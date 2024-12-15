@@ -1,0 +1,23 @@
+<div class="card">
+    <div class="card-header">
+        Add Course
+    </div>
+    <div class="card-body">
+        <form #courseForm="ngForm" (ngSubmit)="onSumbit(courseForm)">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Title</label>
+                <input type="text" class="form-control" placeholder="Enter title" id="title" name="title"
+                    #title="ngModel" [(ngModel)]="model.title">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" rows="3" placeholder="Enter description" id="description" name="description"
+                    #description="ngModel" [(ngModel)]="model.description"></textarea>
+            </div>
+            <div align="center">
+                <button type="button" class="btn btn-primary btn-lg">save</button>
+            </div>
+        </form>
+    </div>
+
+</div>

@@ -5,13 +5,10 @@ import { FormsModule, NgForm } from '@angular/forms';
   selector: 'app-admin',
   imports: [FormsModule],
   templateUrl: './admin.component.html',
-  styleUrl: './admin.component.scss'
+  styleUrl: './admin.component.scss',
 })
 export class AdminComponent {
-
   model: any;
 
-  onSumbit(form: NgForm) {
-
-  }
+  onSumbit(form: NgForm) {}
 }

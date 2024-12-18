@@ -1,13 +1,17 @@
 // import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { CoursesComponent } from "../courses/courses.component";
+// import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-admin',
   imports: [
     FormsModule,
-    //  NgIf
-  ],
+    // NgIf,
+    // NgFor,
+    CoursesComponent
+],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss',
 })
@@ -16,6 +20,7 @@ export class AdminComponent {
   cover!: string | undefined;
   cover_file: any;
   showError = false;
+  courses:any[] = [];
 
   onFileSelected(event: any) {
     const file = event.target.files[0];

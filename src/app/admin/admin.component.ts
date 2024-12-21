@@ -28,7 +28,7 @@ export class AdminComponent {
   }
   getCourses() {
     const data = localStorage.getItem(Strings.STORAGE_KEY);
-    console.log('data', data);
+    // console.log('data', data);
     if (data) {
       this.courses = JSON.parse(data);
     }
@@ -69,6 +69,15 @@ export class AdminComponent {
       id: this.courses.length + 1,
     }
     this.courses = [ ...this.courses, data]
-    localStorage.setItem(Strings.STORAGE_KEY, JSON.stringify(this.courses));
+    this.setItem(this.courses);
+  }
+  deleteCourse(course: any) {
+    console.log('course', course);
+    this.courses = this.courses.filter((c: any) => c.id !== course.id);
+    this.setItem(this.courses);
+  }
+
+  setItem(data: any) {
+    localStorage.setItem(Strings.STORAGE_KEY, JSON.stringify(data));
   }
 }

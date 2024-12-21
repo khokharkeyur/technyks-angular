@@ -44,8 +44,8 @@
 
 <div class="row course mt-5">
     @for(course of courses; track $index) {
-    <div class="col-lg-3 mb-4">
-        <app-courses [course]="course"></app-courses>
+    <div class="col-lg-4 mb-4">
+        <app-courses [course]="course" [isDelete]="true" (del)="deleteCourse(course)"></app-courses>
     </div>
     } @empty {
     <div align="center">

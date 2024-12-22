@@ -7,11 +7,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './courses.component.scss'
 })
 export class CoursesComponent {
-  @Input() course: any;
-  @Input() isDelete = false;
+  @Input() courses: any;
+  @Input() isAdmin = false;
   @Output() del = new EventEmitter();
 
   deleteCourse(course:any) {  
-    this.del.emit(this.course);
+    this.del.emit(course);
   }
 }

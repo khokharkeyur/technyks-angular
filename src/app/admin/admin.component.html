@@ -42,17 +42,19 @@
 
 </div>
 
-<div class="row course mt-5">
+<app-courses [courses]="courses" [isAdmin]="true" (del)="deleteCourse($event)"></app-courses>
+
+<!-- <div class="row course mt-5">
     @for(course of courses; track $index) {
     <div class="col-lg-4 mb-4">
-        <app-courses [course]="course" [isDelete]="true" (del)="deleteCourse(course)"></app-courses>
+        <app-courses [course]="course" [isAdmin]="true" (del)="deleteCourse(course)"></app-courses>
     </div>
     } @empty {
     <div align="center">
         No Course added yet
     </div>
-    }
+    } -->
 
-    <!-- <app-courses *ngFor="let course of courses"></app-courses> -->
+<!-- <app-courses *ngFor="let course of courses"></app-courses> -->
 
-</div>
+<!-- </div> -->

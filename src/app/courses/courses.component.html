@@ -1,14 +1,29 @@
-<div class="box" align="center">
-    <div align="center" class="course-image">
-        <img src="{{course.image}}" />
-        @if (isDelete) {
-        <button class="btn btn-danger" (click)="deleteCourse(course)">
-            <i class="bi bi-trash-fill"></i>
-        </button>
-        }
+<div class="row course mt-5">
+    @for(course of courses; track $index) {
+    <div class="col-lg-4 mb-4">
+        <div class="box" align="center">
+            <div align="center" class="course-image">
+                <img src="{{course.image}}" />
+                @if (isAdmin) {
+                <button class="btn btn-danger" (click)="deleteCourse(course)">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+                }
+            </div>
+            <h5 class="mt-3">{{course?.title}}</h5>
+            <p class="mt-2">
+                {{course?.description}}
+            </p>
+        </div>
     </div>
-    <h5 class="mt-3">{{course?.title}}</h5>
-    <p class="mt-2">
-        {{course?.description}}
-    </p>
+    } @empty {
+    @if (isAdmin) {
+    <div align="center">
+        No Course added yet
+    </div>
+    }
+    }
+
+    <!-- <app-courses *ngFor="let course of courses"></app-courses> -->
+
 </div>

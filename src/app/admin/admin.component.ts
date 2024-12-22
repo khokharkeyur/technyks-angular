@@ -18,7 +18,7 @@ import { Strings } from '../enum/strings.enum';
 })
 export class AdminComponent {
   model: any = {};
-  cover!: string | undefined;
+  cover!: string | undefined | null;
   cover_file: any;
   showError = false;
   courses: any[] = [];
@@ -60,6 +60,9 @@ export class AdminComponent {
     }
     console.log(form.value);
     this.saveCourse(form.value);
+    form.reset();
+    this.cover = 'null';
+    this.cover_file = null;
   }
   saveCourse(formValue: any) {
     console.log('formValue', formValue);

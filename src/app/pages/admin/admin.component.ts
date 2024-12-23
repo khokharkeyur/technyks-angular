@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CoursesComponent } from '../courses/courses.component';
-import { Strings } from '../enum/strings.enum';
+import { Strings } from '../../enum/strings.enum';
 // import { NgFor } from '@angular/common';
 
 @Component({
@@ -70,8 +70,8 @@ export class AdminComponent {
       ...formValue,
       image: this.cover,
       id: this.courses.length + 1,
-    }
-    this.courses = [ ...this.courses, data]
+    };
+    this.courses = [...this.courses, data];
     this.setItem(this.courses);
   }
   deleteCourse(course: any) {

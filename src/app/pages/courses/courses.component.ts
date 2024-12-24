@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, inject, Input} from '@angular/core';
+import { Course } from '../../interfaces/course.interface';
+import { CourseService } from '../../services/course/course.service';
 
 @Component({
   selector: 'app-courses',
@@ -7,11 +9,27 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './courses.component.scss'
 })
 export class CoursesComponent {
-  @Input() courses: any;
+  courses: Course[] = [];
   @Input() isAdmin = false;
-  @Output() del = new EventEmitter();
+  // @Output() del = new EventEmitter();
+  private courseService = inject(CourseService);
+
+  // constructor(private courseService: CourseService) {
+
+  //  }
 
   deleteCourse(course:any) {  
-    this.del.emit(course);
+    // this.del.emit(course);
   }
+  ngOnInit() {
+   this.courses = this.courseService.getCourses();
+    
+  }
+  // getCourses() {
+  //   const data = localStorage.getItem(Strings.STORAGE_KEY);
+  //   if (data) {
+  //     this.courses = JSON.parse(data);
+  //     // this.courses[0] = {...this.courses[0], isActive: true};
+  //   }
+  // }
 }

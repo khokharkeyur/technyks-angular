@@ -26,12 +26,19 @@ export class CourseService {
   }
   addCourse(data: Course) {
     const courses = this.courses$.value;
-    // courses.push(data);
-    // localStorage.setItem(Strings.STORAGE_KEY, JSON.stringify(courses));
     const newCourses = [...courses, { ...data, id: courses.length + 1 }];
     this.updateCourses(newCourses);
     this.setItem(newCourses);
     return newCourses;
+  }
+
+  deleteCourse(data: Course) {
+    const courses = this.courses$.value;
+    const newCourses = courses.filter((course) => course.id !== data.id);
+    this.updateCourses(newCourses);
+    this.setItem(newCourses);
+    return newCourses;
+
   }
 
   updateCourses(data: Course[]) {

@@ -69,7 +69,6 @@ export class AdminComponent {
     this.cover_file = null;
   }
   saveCourse(formValue: any) {
-    console.log('formValue', formValue);
     const data: Course = {
       ...formValue,
       image: this.cover,

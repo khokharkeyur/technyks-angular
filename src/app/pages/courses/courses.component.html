@@ -1,5 +1,6 @@
 <div class="row course mt-5">
-    @for(course of courses; track $index) {
+    @for(course of courses(); track $index) {
+    <!-- @for(course of courses; track $index) { -->
     <div class="col-lg-4 mb-4">
         <div class="box" align="center">
             <div align="center" class="course-image">

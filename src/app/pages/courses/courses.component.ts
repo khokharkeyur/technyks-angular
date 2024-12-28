@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, signal } from '@angular/core';
 import { Course } from '../../interfaces/course.interface';
 import { CourseService } from '../../services/course/course.service';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,8 @@ import { Subscription } from 'rxjs';
   styleUrl: './courses.component.scss',
 })
 export class CoursesComponent {
-  courses: Course[] = [];
+  // courses: Course[] = [];
+  courses = signal<Course[]>([]);
   @Input() isAdmin = false;
   // @Output() del = new EventEmitter();
   coursesSub!: Subscription;
@@ -24,11 +25,13 @@ export class CoursesComponent {
     this.courseService.deleteCourse(course);
   }
   ngOnInit() {
-    this.courses = this.courseService.getCourses();
+    // this.courses = this.courseService.getCourses();
+    this.courses.set( this.courseService.getCourses());
 
     this.coursesSub = this.courseService.Courses.subscribe({
       next: (data) => {
-        this.courses = data;
+        // this.courses = data;
+        this.courses.set(data);
         console.log(data, 'data');
       },
       error: (err) => {

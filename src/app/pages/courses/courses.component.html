@@ -5,7 +5,7 @@
         <div class="box" align="center">
             <div align="center" class="course-image">
                 <img src="{{course.image}}" />
-                @if (isAdmin) {
+                @if (isAdmin()) {
                 <button class="btn btn-danger" (click)="deleteCourse(course)">
                     <i class="bi bi-trash-fill"></i>
                 </button>
@@ -18,7 +18,7 @@
         </div>
     </div>
     } @empty {
-    @if (isAdmin) {
+    @if (isAdmin()) {
     <div align="center">
         No Course added yet
     </div>

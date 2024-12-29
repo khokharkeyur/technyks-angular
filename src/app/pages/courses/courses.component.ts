@@ -1,4 +1,4 @@
-import { Component, inject, Input, signal } from '@angular/core';
+import { Component, inject, input, Input, signal } from '@angular/core';
 import { Course } from '../../interfaces/course.interface';
 import { CourseService } from '../../services/course/course.service';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,8 @@ import { Subscription } from 'rxjs';
 export class CoursesComponent {
   // courses: Course[] = [];
   courses = signal<Course[]>([]);
-  @Input() isAdmin = false;
+  // @Input() isAdmin = false;
+  isAdmin = input(false);
   // @Output() del = new EventEmitter();
   coursesSub!: Subscription;
   private courseService = inject(CourseService);

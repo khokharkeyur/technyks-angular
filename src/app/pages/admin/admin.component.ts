@@ -1,3 +1,4 @@
+import { signal } from '@angular/core';
 // import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -19,10 +20,15 @@ import { CourseService } from '../../services/course/course.service';
   styleUrl: './admin.component.scss',
 })
 export class AdminComponent {
-  model: any = {};
-  cover!: string | undefined | null;
-  cover_file: any;
-  showError = false;
+  // model: any = {};
+  // cover!: string | undefined | null;
+  // cover_file: any;
+  // showError = false;
+
+  model = signal<any>({});
+  showError = signal<boolean>(false);
+  cover = signal<string | null | undefined>(null);
+  cover_file = signal<any>(null);
   // courses: any[] = [];
 
   private courseService = inject(CourseService);
@@ -41,15 +47,18 @@ export class AdminComponent {
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.cover_file = file;
+      // this.cover_file = file;
+      this.cover_file.set(file);
       const reader = new FileReader();
       console.log(reader);
       reader.onload = () => {
         const dataUrl = reader.result?.toString();
-        this.cover = dataUrl;
+        // this.cover = dataUrl;
+        this.cover.set(dataUrl);
       };
       reader.readAsDataURL(file);
-      this.showError = false;
+      // this.showError = false;
+      this.showError.set(false);
     }
   }
 
@@ -58,20 +67,22 @@ export class AdminComponent {
       console.log('form invalid');
       form.control.markAllAsTouched();
       if (!this.cover) {
-        this.showError = true;
+        // this.showError = true;
+        this.showError.set(true);
       }
       return;
     }
     console.log(form.value);
     this.saveCourse(form.value);
     form.reset();
-    this.cover = 'null';
-    this.cover_file = null;
+    // this.cover = 'null';
+    // this.cover_file = null;
+    this.cover.set(null);
   }
   saveCourse(formValue: any) {
     const data: Course = {
       ...formValue,
-      image: this.cover,
+      image: this.cover(),
       // id: this.courses.length + 1,
     };
     this.courseService.addCourse(data);
